@@ -11,9 +11,11 @@ jobs:
     name: App Production
     runs-on: ubuntu-latest
     steps:
+      - name: Set Tag
+        run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
       - name: Checkout master
         uses: actions/checkout@master
-        run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
       - name: Test Tag
         run: echo "PROD-$TAG"
