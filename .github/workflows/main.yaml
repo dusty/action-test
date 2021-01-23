@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - $default-branch
+      - "$default-branch"
     tags:
       - "[1-9].[0-9]+.[0-9]+"
 jobs:
