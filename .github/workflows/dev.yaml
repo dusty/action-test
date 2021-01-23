@@ -11,14 +11,14 @@ jobs:
     steps:
       - name: Development Check
         if: startsWith(github.ref, 'refs/heads')
-        run: echo "TAG=$GITHUB_SHA" >> $GITHUB_ENV
+        run: echo "TAG=$GITHUB_SHA" >> $GITHUB_ENV && echo "ENVIRONMENT=development" >> $GITHUB_ENV
 
       - name: Production Check
         if: startsWith(github.ref, 'refs/tags')
-        run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV && echo "ENVIRONMENT=production" >> $GITHUB_ENV
 
       - name: Checkout master
         uses: actions/checkout@master
 
       - name: Test Tag
-        run: echo "$TAG"
+        run: echo "$TAG-$ENVIRONMENT"
